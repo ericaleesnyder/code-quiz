@@ -43,3 +43,50 @@
 // THEN the game is over
 // WHEN the game is over
 // THEN I can save my initials and my score
+
+var startButton = document.querySelector(".start-button");
+var timerEl = document.querySelector(".timer-count");
+var highScores = document.querySelector(".high-scores")
+
+var question = document.querySelector("#question")
+// var newQuestion = document.createElement("h2");
+
+var timer;
+var timerCount;
+
+var questionList = [
+    "What is an array?",
+    "What is the purpose of a function?",
+    "What are the 5 primitive data types?",
+]
+
+
+function countDown () {
+    timerCount = 120;
+    timerEl.textContent = "Time: " + timerCount;
+    
+    timer = setInterval(function() {
+        if (timerCount <= 0) {
+            clearInterval(timer);
+        } else {
+            timerCount--; 
+            timerEl.textContent = "Time: " + timerCount;
+        }
+    }, 1000);
+}; 
+
+function newQuestion () {
+    question.textContent = "this is my new question text"
+};
+
+// highScores.addEventListeener("click", function (){
+
+// });
+
+startButton.addEventListener("click", function () {
+    startButton.style.display="none";
+    // newQuestion();
+    question.textContent=questionList[0];
+    question.setAttribute("text-align", "left");
+    countDown();
+});

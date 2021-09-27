@@ -14,7 +14,7 @@ a:hover {
     font-weight:bold;
 }
 
-button {
+.start-button {
     border-radius: 5px;
     margin: 10px;
 }

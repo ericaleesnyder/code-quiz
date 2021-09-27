@@ -12,9 +12,9 @@
     <!--display oh header will be flex so we can have the items in the header justified to left and right (space between?)-->
     <header>
         <div>
-            <a href="#">View High Scores</a>
+            <a href="#" class="high-scores">View High Scores</a>
         </div>
-        <div>
+        <div class="timer-count">
             Time: 0
         </div>
     </header>
@@ -24,7 +24,7 @@
         <!--This section will be the "card" and will be populated with the questions-->
         <section class="card">
             <div class="main-card">
-                <h1>Code Quiz</h1>
+                <h1 class="question" id="question">Code Quiz</h1>
                 <p>
                     Welcome to the code quiz! </p>
                 <p>
@@ -33,7 +33,7 @@
                 <p>
                     Happy quizzing! 
                 </p>
-                <button>
+                <button class="start-button" id="start">
                     <p>Start</p>
                 </button>
             </div>
