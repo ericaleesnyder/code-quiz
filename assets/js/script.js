@@ -45,21 +45,96 @@
 // THEN I can save my initials and my score
 
 var startButton = document.querySelector(".start-button");
+var highScores = document.querySelector(".high-scores");
 var timerEl = document.querySelector(".timer-count");
-var highScores = document.querySelector(".high-scores")
+
+var answerChoices = document.querySelector(".answer-choices");
+var intro = document.querySelector(".intro");
+var answerChoices = document.querySelector(".answer-choices");
+
+var first = document.querySelector(".first");
+var second = document.querySelector(".second");
+var third = document.querySelector(".third");
+var fourth = document.querySelector(".fourth");
 
 var question = document.querySelector("#question")
-// var newQuestion = document.createElement("h2");
 
 var timer;
 var timerCount;
+var timerSubtracted;
 
 var questionList = [
-    "What is an array?",
-    "What is the purpose of a function?",
-    "What are the 5 primitive data types?",
-]
-
+    {
+    question: 'A(n) _____ is a variable that can hold multiple values.',
+    A: "Array",
+    B: "Object",
+    C: "CSS Element",
+    D: "Class",
+    correctAnswer: "Array"},
+    {
+    question: 'A _____ is a primitive value that can only be True or False?',
+    A: "Number",
+    B: "String",
+    C: "Boolean",
+    D: "Null",
+    correctAnswer: "Boolean"},
+    {
+    question: 'DOM stands for:',
+    A: "Declaration of the Month ",
+    B: "Document Object Model",
+    C: "Delete On Main",
+    D: "Drastically Overriding Material",
+    correctAnswer: "Document Object Model" },
+    {
+    question: 'A(n) _____ is a variable that can hold multiple values.',
+    A: "Array",
+    B: "Object",
+    C: "CSS Element",
+    D: "Class",
+    correctAnswer: "Array"},
+    {
+    question: 'A(n) _____ is a variable that can hold multiple values.',
+    A: "Array",
+    B: "Object",
+    C: "CSS Element",
+    D: "Class",
+    correctAnswer: "Array"},
+    {
+    question: 'A(n) _____ is a variable that can hold multiple values.',
+    A: "Array",
+    B: "Object",
+    C: "CSS Element",
+    D: "Class",
+    correctAnswer: "Array"},
+    {
+    question: 'A(n) _____ is a variable that can hold multiple values.',
+    A: "Array",
+    B: "Object",
+    C: "CSS Element",
+    D: "Class",
+    correctAnswer: "Array"},  
+    {
+    question: 'A(n) _____ is a variable that can hold multiple values.',
+    A: "Array",
+    B: "Object",
+    C: "CSS Element",
+    D: "Class",
+    correctAnswer: "Array"},
+    {
+    question: 'A(n) _____ is a variable that can hold multiple values.',
+    A: "Array",
+    B: "Object",
+    C: "CSS Element",
+    D: "Class",
+    correctAnswer: "Array"},
+    {
+    question: 'A(n) _____ is a variable that can hold multiple values.',
+    A: "Array",
+    B: "Object",
+    C: "CSS Element",
+    D: "Class",
+    correctAnswer: "Array"},
+];
 
 function countDown () {
     timerCount = 120;
@@ -75,18 +150,70 @@ function countDown () {
     }, 1000);
 }; 
 
-function newQuestion () {
-    question.textContent = "this is my new question text"
-};
+var lastQuestionIndex = questionList.length-1;
+var questionIndex = 0
+var q;
 
-// highScores.addEventListeener("click", function (){
-
-// });
+function displayQuestion () {
+    q = questionList[questionIndex];
+    
+    answerChoices.style.display="block";
+    
+    question.textContent = q.question;
+    first.textContent=q.A;
+    second.textContent=q.B;
+    third.textContent=q.C;
+    fourth.textContent=q.D;
+    
+    questionIndex++;
+}
 
 startButton.addEventListener("click", function () {
-    startButton.style.display="none";
-    // newQuestion();
-    question.textContent=questionList[0];
-    question.setAttribute("text-align", "left");
+    intro.style.display="none";
+    displayQuestion();
     countDown();
+});
+
+first.addEventListener('click', function () {
+    if (first.textContent !== q.correctAnswer) {
+        console.log("wrong");
+        timerCount = timerCount-10;
+    }
+    else {
+        console.log("correct")
+        displayQuestion();
+        }
+});
+
+second.addEventListener('click', function () {
+    if (second.textContent !== q.correctAnswer) {
+        console.log("wrong");
+        timerCount = timerCount-10;
+    }
+    else {
+        console.log("correct")
+        displayQuestion();
+        }
+});
+
+third.addEventListener('click', function () {
+    if (third.textContent !== q.correctAnswer) {
+        console.log("wrong");
+        timerCount = timerCount-10;
+    }
+    else {
+        console.log("correct")
+        displayQuestion();
+        }
+});
+
+fourth.addEventListener('click', function () {
+    if (fourth.textContent !== q.correctAnswer) {
+        console.log("wrong");
+        timerCount = timerCount-10;
+    }
+    else {
+        console.log("correct")
+        displayQuestion();
+        }
 });

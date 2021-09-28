@@ -14,7 +14,7 @@ a:hover {
     font-weight:bold;
 }
 
-.start-button {
+button {
     border-radius: 5px;
     margin: 10px;
 }
@@ -34,7 +34,7 @@ header {
 h1{
     font-size: 200%;
     text-align: center;
-    margin-bottom: 5px;
+    margin:10px 0;
     color: var(--dark);
 }
 
@@ -45,11 +45,15 @@ h3 {
 }
 
 ol{
-    list-style:circle;
+    text-align: left;
     margin-left: 10px;
 }
 
 p {
+    padding: 10px;
+}
+
+.answer-choices {
     padding: 10px;
 }
 
@@ -58,7 +62,7 @@ p {
     margin: 0 auto;
     height:fit-content;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .main-card {
@@ -66,9 +70,25 @@ p {
     background-color: var(--lightest);
     border-radius: 15px;
     text-align: center;
+    width: 100%;
 }
 
 .card-left {
     width: 25%;
     padding: 45px 25px;
+}
+
+li {
+    line-height: 2rem;
+    border-radius: 5px;
+    margin:10px;
+    background-color: var(--lightest);
+    border: dashed 1px var(--bright);
+    padding: 3px;
+}
+
+li:hover {
+    background-color:#d9564a83;
+    color: var(--dark);
+    border: solid 1px var(--bright);
 }
