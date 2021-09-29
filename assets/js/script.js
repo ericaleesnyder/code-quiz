@@ -45,55 +45,27 @@ var questionList = [
     D: "Drastically Overriding Material",
     correctAnswer: "Document Object Model" },
     {
-    quest: 'A(n) _____ is a variable that can hold multiple values.',
-    A: "Array",
-    B: "Object",
-    C: "CSS Element",
-    D: "Class",
-    correctAnswer: "Array"},
+    quest: 'HTML DOM methods are _____ you can perform on HTML elements.',
+    A: "Edits",
+    B: "Actions",
+    C: "Types",
+    D: "Spells",
+    correctAnswer: "Actions"},
     {
-    quest: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'The addEventListener() method attaches to a(n) _____.',
     A: "Array",
     B: "Object",
-    C: "CSS Element",
+    C: "Element",
     D: "Class",
-    correctAnswer: "Array"},
+    correctAnswer: "Element"},
     {
-    quest: 'A(n) _____ is a variable that can hold multiple values.',
-    A: "Array",
-    B: "Object",
-    C: "CSS Element",
-    D: "Class",
-    correctAnswer: "Array"},
-    {
-    quest: 'A(n) _____ is a variable that can hold multiple values.',
-    A: "Array",
-    B: "Object",
-    C: "CSS Element",
-    D: "Class",
-    correctAnswer: "Array"},  
-    {
-    quest: 'A(n) _____ is a variable that can hold multiple values.',
-    A: "Array",
-    B: "Object",
-    C: "CSS Element",
-    D: "Class",
-    correctAnswer: "Array"},
-    {
-    quest: 'A(n) _____ is a variable that can hold multiple values.',
-    A: "Array",
-    B: "Object",
-    C: "CSS Element",
-    D: "Class",
-    correctAnswer: "Array"},
-    {
-    quest: 'A(n) _____ is a variable that can hold multiple values.',
-    A: "Array",
-    B: "Object",
-    C: "CSS Element",
-    D: "Class",
-    correctAnswer: "Array"},
-];
+    quest: 'Parent, Child, and Sibling are examples of: ',
+    A: "Node Relationships",
+    B: "Family Members",
+    C: "Elements",
+    D: "Functions",
+    correctAnswer: "Node Relationships"},
+]
 
 // timer specific variables 
 var timer;
@@ -101,7 +73,7 @@ var timerCount;
 var timerSubtracted;
 
 function countDown () {
-    timerCount = 120;
+    timerCount = 100;
     timerEl.textContent = "Time: " + timerCount;
     
     timer = setInterval(function() {
@@ -142,13 +114,15 @@ function enterScore() { // brings up the page with the form
 
     mainCard.style.display="none"; // hides question/answer portion
     saveScore.style.display="block"; // shows the section in which we are building the form;
+    scoreEntry.style.display="block";
 }
 
-function viewHighScore () {
+function viewHighScore (event) {
     mainCard.style.display="none";
     saveScore.style.display="block";
     scoreEntry.style.display="none";
     score.textContent= "High Scores:"
+    event.stopPropagation();
 }
 
 

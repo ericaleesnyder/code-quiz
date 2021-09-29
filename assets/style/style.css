@@ -38,6 +38,10 @@ h1{
     color: var(--dark);
 }
 
+h2{
+    font-size: 175%;
+}
+
 h3 {
     font-size: 150%;
     text-align: center;
