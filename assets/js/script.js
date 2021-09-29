@@ -1,85 +1,93 @@
 var startButton = document.querySelector(".start-button");
+var homeButton = document.querySelector(".home");
 var highScores = document.querySelector(".high-scores");
 var timerEl = document.querySelector(".timer-count");
 var answerChoices = document.querySelector(".answer-choices");
 var intro = document.querySelector(".intro");
-var answerChoices = document.querySelector(".answer-choices");
 var saveScore = document.querySelector(".save-score")
 var scoreList = document.querySelector(".score-list")
 var mainCard = document.querySelector(".main-card")
+
 var first = document.querySelector(".first");
 var second = document.querySelector(".second");
 var third = document.querySelector(".third");
 var fourth = document.querySelector(".fourth");
+
 var question = document.querySelector("#question");
+
 var submit = document.querySelector("#submit");
+var initialsInput = document.querySelector("#init")
+var scoreEntry = document.querySelector("#score-entry");
+var scoreRankings = document.querySelector('#score-rankings');
+
+var score = document.querySelector('#score');
 
 var questionList = [
     {
-    question: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'A(n) _____ is a variable that can hold multiple values.',
     A: "Array",
     B: "Object",
     C: "CSS Element",
     D: "Class",
     correctAnswer: "Array"},
     {
-    question: 'A _____ is a primitive value that can only be True or False?',
+    quest: 'A _____ is a primitive value that can only be True or False?',
     A: "Number",
     B: "String",
     C: "Boolean",
     D: "Null",
     correctAnswer: "Boolean"},
     {
-    question: 'DOM stands for:',
+    quest: 'DOM stands for:',
     A: "Declaration of the Month ",
     B: "Document Object Model",
     C: "Delete On Main",
     D: "Drastically Overriding Material",
     correctAnswer: "Document Object Model" },
     {
-    question: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'A(n) _____ is a variable that can hold multiple values.',
     A: "Array",
     B: "Object",
     C: "CSS Element",
     D: "Class",
     correctAnswer: "Array"},
     {
-    question: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'A(n) _____ is a variable that can hold multiple values.',
     A: "Array",
     B: "Object",
     C: "CSS Element",
     D: "Class",
     correctAnswer: "Array"},
     {
-    question: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'A(n) _____ is a variable that can hold multiple values.',
     A: "Array",
     B: "Object",
     C: "CSS Element",
     D: "Class",
     correctAnswer: "Array"},
     {
-    question: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'A(n) _____ is a variable that can hold multiple values.',
     A: "Array",
     B: "Object",
     C: "CSS Element",
     D: "Class",
     correctAnswer: "Array"},  
     {
-    question: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'A(n) _____ is a variable that can hold multiple values.',
     A: "Array",
     B: "Object",
     C: "CSS Element",
     D: "Class",
     correctAnswer: "Array"},
     {
-    question: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'A(n) _____ is a variable that can hold multiple values.',
     A: "Array",
     B: "Object",
     C: "CSS Element",
     D: "Class",
     correctAnswer: "Array"},
     {
-    question: 'A(n) _____ is a variable that can hold multiple values.',
+    quest: 'A(n) _____ is a variable that can hold multiple values.',
     A: "Array",
     B: "Object",
     C: "CSS Element",
@@ -116,7 +124,9 @@ function displayQuestion () {
     q = questionList[questionIndex];
     
     answerChoices.style.display="block";
-    question.textContent = q.question;
+    question.style.display="block";
+
+    question.textContent = q.quest;
     
     first.textContent=q.A;
     second.textContent=q.B;
@@ -126,33 +136,86 @@ function displayQuestion () {
     questionIndex++;
 }
 
-function enterScore() {
-    var score = document.querySelector("#score");
-    score.textContent = "Score: " + timerCount;
-
+function enterScore() { // brings up the page with the form 
     clearInterval(timer); //stops the timer at current score
-    
+    score.textContent = "Congrats! Your score is: " + timerCount;
+
     mainCard.style.display="none"; // hides question/answer portion
     saveScore.style.display="block"; // shows the section in which we are building the form;
 }
 
-function viewHighScore (event) {
-   event.preventDefault();
-
-   mainCard.style.display="none";
-   saveScore.style.display="none";
-   
-   scoreList.style.display="block";
+function viewHighScore () {
+    mainCard.style.display="none";
+    saveScore.style.display="block";
+    scoreEntry.style.display="none";
+    score.textContent= "High Scores:"
 }
 
-highScores.addEventListener("click", viewHighScore);
-submit.addEventListener('click', viewHighScore);
 
-startButton.addEventListener("click", function () {
+//Score display/entry code:
+highScores.addEventListener("click", viewHighScore);
+
+var rankings = []
+
+submit.addEventListener('click', function (event) {
+    event.preventDefault();
+     
+    var scoreText = initialsInput.value.trim() + ": " + timerCount;
+    if (scoreText === ''){
+        return;
+    }
+
+    saveScore.style.display="block",
+    rankings.push(scoreText);
+    initialsInput.value = '',
+
+    storeRank();
+    renderScore();
+});
+
+function renderScore() {
+    scoreRankings.innerHTML = '';
+
+  for (var i = 0; i < rankings.length; i++) {
+    var rank = rankings[i];
+
+    var li = document.createElement('li');
+    li.textContent = rank;
+
+    scoreRankings.appendChild(li);
+  }
+}
+
+function init (){
+    var storeScore = JSON.parse(localStorage.getItem('savedRanking'));
+
+    if (storeScore !== null) {
+        rankings = storeScore;
+    }
+   renderScore()
+}
+
+function storeRank(){
+    localStorage.setItem('savedRanking', JSON.stringify(rankings))
+}
+
+// general button event listeners:
+startButton.addEventListener("click", function (event) {
     intro.style.display="none";
     displayQuestion();
     countDown();
+    event.stopPropagation;
 });
+
+homeButton.addEventListener('click', function (event) {
+    mainCard.style.display="block";
+    intro.style.display="block";
+    answerChoices.style.display="none";
+    saveScore.style.display="none";
+    question.style.display="none";
+    questionIndex=0;
+    return;
+})
 
 first.addEventListener('click', function () {
     if (questionIndex >= questionList.length || timerCount<= 0){
@@ -218,3 +281,5 @@ fourth.addEventListener('click', function () {
         displayQuestion();
         }
 });
+
+init();

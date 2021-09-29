@@ -86,7 +86,7 @@ p {
     padding: 45px 25px;
 }
 
-li {
+.answer-choices li {
     line-height: 2rem;
     border-radius: 5px;
     margin:10px;
@@ -95,7 +95,7 @@ li {
     padding: 3px;
 }
 
-li:hover {
+.answer-choices li:hover {
     background-color:#d9564a83;
     color: var(--dark);
     border: solid 1px var(--bright);
