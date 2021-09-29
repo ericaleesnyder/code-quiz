@@ -23,7 +23,7 @@
     <main>
         <!--This section will be the "card" and will be populated with the questions-->
         <section class="card">
-            <div class="main-card">
+            <div class="main-card" style="display: block">
                 <h1 class="question" id="question">Code Quiz</h1>
                 <div class="intro">
                     <p>
@@ -47,8 +47,20 @@
                     </ol>
                     <!-- <button class="next" style="display: none;"></button> -->
                 </div>
-                <div class="save-score" style="display: none;">
-                </div>
+            </div>
+            <div class="save-score" style="display: none;">
+                <form>
+                    <label>
+                        Initials:
+                    </label>
+                    <input type="text" id="init" name="init">
+                    <input id="submit" type="submit" value="Submit">
+                </form>
+                <p id="score">
+                </p>
+            </div>
+            <div class="score-list" style="display: none;">
+                ieieieieiie
             </div>
         </section>
     </main>
